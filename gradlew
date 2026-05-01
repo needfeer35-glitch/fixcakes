@@ -1,36 +1,7 @@
 #!/bin/sh
-#
-# Gradle start up script for UN*X
-#
-
-# Attempt to set APP_HOME
-PRG="$0"
-while [ -h "$PRG" ] ; do
-    ls=`ls -ld "$PRG"`
-    link=`expr "$ls" : '.*-> \(.*\)$'`
-    if expr "$link" : '/.*' > /dev/null; then
-        PRG="$link"
-    else
-        PRG=`dirname "$PRG"`"/$link"
-    fi
-done
-SAVED="`pwd`"
-cd "`dirname \"$PRG\"`/" >/dev/null
-APP_HOME="`pwd -P`"
-cd "$SAVED" >/dev/null
-
-APP_NAME="Gradle"
-APP_BASE_NAME=`basename "$0"`
-
-DEFAULT_JVM_OPTS='"-Xmx64m" "-Xms64m"'
-
-CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
-
-JAR="$APP_HOME/gradle/wrapper/gradle-wrapper.jar"
-JAVA_EXE="java"
-
-exec "$JAVA_EXE" $DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS \
-    "-Dorg.gradle.appname=$APP_BASE_NAME" \
+APP_HOME="$(cd "$(dirname "$0")" && pwd)"
+CLASSPATH="$APP_HOME/gradle/wrapper/gradle-wrapper.jar"
+exec java $JAVA_OPTS \
+    "-Dorg.gradle.appname=gradlew" \
     -classpath "$CLASSPATH" \
-    org.gradle.wrapper.GradleWrapperMain \
-    "$@"
+    org.gradle.wrapper.GradleWrapperMain "$@"
