@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "cakeauto",
+  "version": "1.1.0",
+  "name": "CakeAuto",
+  "description": "Автоматическое создание тортов! Команда /tort открывает GUI.",
+  "authors": ["You"],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.cakeauto.CakeAutoMod"],
+    "client": ["com.cakeauto.client.CakeAutoClient"]
+  },
+  "mixins": ["cakeauto.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "fabric-api": "*",
+    "minecraft": "~1.21.5",
+    "java": ">=21"
+  }
+}
