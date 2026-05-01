@@ -2,7 +2,7 @@ package com.cakeauto.client;
 
 import com.cakeauto.CakeAutoPackets;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 
 public class CakeAutoClient implements ClientModInitializer {
