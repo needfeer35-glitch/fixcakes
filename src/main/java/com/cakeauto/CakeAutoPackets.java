@@ -10,13 +10,13 @@ import net.minecraft.util.Identifier;
 public class CakeAutoPackets {
 
     public static final CustomPayload.Id<OpenGuiPayload> OPEN_GUI_ID =
-            new CustomPayload.Id<>(Identifier.of(CakeAutoMod.MOD_ID, "open_gui"));
+            new CustomPayload.Id<>(Identifier.of("cakeauto", "open_gui"));
 
     public static final CustomPayload.Id<ToggleAutoPayload> TOGGLE_AUTO_ID =
-            new CustomPayload.Id<>(Identifier.of(CakeAutoMod.MOD_ID, "toggle_auto"));
+            new CustomPayload.Id<>(Identifier.of("cakeauto", "toggle_auto"));
 
     public static final CustomPayload.Id<AutoOpenTablePayload> AUTO_OPEN_TABLE_ID =
-            new CustomPayload.Id<>(Identifier.of(CakeAutoMod.MOD_ID, "auto_open_table"));
+            new CustomPayload.Id<>(Identifier.of("cakeauto", "auto_open_table"));
 
     public record OpenGuiPayload(boolean autoEnabled, int searchRadius) implements CustomPayload {
         public static final PacketCodec<PacketByteBuf, OpenGuiPayload> CODEC =
@@ -70,8 +70,7 @@ public class CakeAutoPackets {
                     for (int dy = -radius; dy <= radius; dy++) {
                         for (int dz = -radius; dz <= radius; dz++) {
                             var pos = playerPos.add(dx, dy, dz);
-                            var state = world.getBlockState(pos);
-                            if (state.isOf(net.minecraft.block.Blocks.CRAFTING_TABLE)) {
+                            if (world.getBlockState(pos).isOf(net.minecraft.block.Blocks.CRAFTING_TABLE)) {
                                 double dist = playerPos.getSquaredDistance(pos);
                                 if (dist < bestDist) {
                                     bestDist = dist;
@@ -83,11 +82,11 @@ public class CakeAutoPackets {
                 }
 
                 if (nearest != null) {
-                    var tableBlock = world.getBlockState(nearest);
-                    tableBlock.onUse(world, player, new net.minecraft.util.hit.BlockHitResult(
-                            net.minecraft.util.math.Vec3d.ofCenter(nearest),
-                            net.minecraft.util.math.Direction.UP,
-                            nearest, false));
+                    world.getBlockState(nearest).onUse(world, player,
+                            new net.minecraft.util.hit.BlockHitResult(
+                                    net.minecraft.util.math.Vec3d.ofCenter(nearest),
+                                    net.minecraft.util.math.Direction.UP,
+                                    nearest, false));
                 } else {
                     player.sendMessage(
                             net.minecraft.text.Text.literal("§cВерстак не найден в радиусе " + radius + " блоков!"),
